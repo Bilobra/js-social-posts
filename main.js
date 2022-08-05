@@ -11,10 +11,10 @@ const posts = [
         created: "2021-06-25"
     },
     {
-        i: 2,
-        conten: "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
-        medi: "https://unsplash.it/600/400?image=112",
-        autho: {
+        id: 2,
+        content: "Placeat libero ipsa nobis ipsum quibusdam quas harum ut. Distinctio minima iusto. Ad ad maiores et sint voluptate recusandae architecto. Et nihil ullam aut alias.",
+        media: "https://unsplash.it/600/400?image=112",
+        author: {
             name: "Sofia Perlari",
             image: "https://unsplash.it/300/300?image=10"
         },
@@ -59,18 +59,21 @@ const posts = [
 const postWrapper = document.getElementById('container')
 console.log(postWrapper)
 
+
+
+
 posts.forEach((post) => {
-    // let { content, media, author, name, image, likes, created } = post
+   
     postWrapper.innerHTML +=
         `
       <div class="post">
             <div class="post__header">
                 <div class="post-meta">
                     <div class="post-meta__icon">
-                    <img class="profile-pic" src="${post.author[image]}" >
+                    <img class="profile-pic" src="${post.author.image}" alt="ciao" >
                     </div>
                     <div class="post-meta__data">
-                    <div class="post-meta__author">${post.author[name]}</div>
+                    <div class="post-meta__author">${post.author.name}</div>
                     <div class="post-meta__time">${post.created}</div>
                 </div> 
             </div>
@@ -95,4 +98,5 @@ posts.forEach((post) => {
     
     `
 })
+
 
