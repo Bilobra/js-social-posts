@@ -56,48 +56,98 @@ const posts = [
     }
 ];
 
-const postWrapper = document.getElementById('container')
-console.log(postWrapper)
 
 
+posts.forEach((element)=>{
+    document.getElementById('container').innerHTML+= onePost(element)
 
-
-posts.forEach((post) => {
-
-    postWrapper.innerHTML +=
-        `
-      <div class="post">
-            <div class="post__header">
-                <div class="post-meta">
-                    <div class="post-meta__icon">
-                    <img class="profile-pic" src="${post.author.image}" alt="ciao" >
-                    </div>
-                    <div class="post-meta__data">
-                    <div class="post-meta__author">${post.author.name}</div>
-                    <div class="post-meta__time">${post.created}</div>
-                </div> 
-            </div>
-            <div class="post__text">${post.content}</div>
-            <div class="post__image">
-                <img src="${post.media}" alt="">
-            </div>
-            <div class="post__footer">
-                <div class="likes js-likes">
-                    <div class="likes__cta">
-                        <a class="like-button  js-like-button" href="#" data-postid="${post.id}">
-                                <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
-                                <span class="like-button__label">Mi Piace</span>
-                        </a>
-                    </div>
-                    <div class="likes__counter">
-                            Piace a <b id="like-counter-1" class="js-likes-counter">${post.likes}</b> persone
-                    </div>
-                </div> 
-            </div>  
-        </div>
-    
-    `
 })
+
+
+function onePost(element) {
+    const { id, content, media, author, likes, created} = element;
+
+    if (author.image === null) {
+        let placeholder = firstLetters(author.name)
+        return `
+        <div class="post">
+              <div class="post__header">
+                  <div class="post-meta">
+                      <div class="post-meta__icon">
+                      ${placeholder}
+                      </div>
+                      <div class="post-meta__data">
+                      <div class="post-meta__author">${author.name}</div>
+                      <div class="post-meta__time">${created}</div>
+                  </div> 
+              </div>
+              <div class="post__text">${content}</div>
+              <div class="post__image">
+                  <img src="${media}" alt="">
+              </div>
+              <div class="post__footer">
+                  <div class="likes js-likes">
+                      <div class="likes__cta">
+                          <a class="like-button  js-like-button" href="#" data-postid="${id}">
+                                  <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                                  <span class="like-button__label">Mi Piace</span>
+                          </a>
+                      </div>
+                      <div class="likes__counter">
+                              Piace a <b id="like-counter-1" class="js-likes-counter">${likes}</b> persone
+                      </div>
+                  </div> 
+              </div>  
+          </div>
+      
+      `
+
+
+    } else {
+        return `
+        <div class="post">
+              <div class="post__header">
+                  <div class="post-meta">
+                      <div class="post-meta__icon">
+                      <img class="profile-pic" src="${author.image}" alt="${author.name}">  
+                      </div>
+                      <div class="post-meta__data">
+                      <div class="post-meta__author">${author.name}</div>
+                      <div class="post-meta__time">${created}</div>
+                  </div> 
+              </div>
+              <div class="post__text">${content}</div>
+              <div class="post__image">
+                  <img src="${media}" alt="">
+              </div>
+              <div class="post__footer">
+                  <div class="likes js-likes">
+                      <div class="likes__cta">
+                          <a class="like-button  js-like-button" href="#" data-postid="${id}">
+                                  <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                                  <span class="like-button__label">Mi Piace</span>
+                          </a>
+                      </div>
+                      <div class="likes__counter">
+                              Piace a <b id="like-counter-1" class="js-likes-counter">${likes}</b> persone
+                      </div>
+                  </div> 
+              </div>  
+          </div>
+      
+      `
+    }
+   
+
+}
+
+function firstLetters(string) {
+    let name = string.split(' ')[0].charAt(0);
+    let surname = string.split(' ')[1].charAt(0);
+    let placeholder = name + surname;
+    return placeholder
+}
+
 
 // cambia colore al button + aggiungi o togli like
 const btnLike = document.querySelectorAll('.js-like-button');
@@ -115,5 +165,7 @@ for (let i = 0; i < posts.length; i++) {
         }
     })
 }
+
+
 
 
