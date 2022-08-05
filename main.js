@@ -58,10 +58,14 @@ const posts = [
 
 
 
-posts.forEach((element)=>{
-    document.getElementById('container').innerHTML+= onePost(element)
 
-})
+
+function firstLetters(string) {
+    let name = string.split(' ')[0].charAt(0);
+    let surname = string.split(' ')[1].charAt(0);
+    let placeholder = name + surname;
+    return placeholder
+}
 
 
 function onePost(element) {
@@ -141,12 +145,11 @@ function onePost(element) {
 
 }
 
-function firstLetters(string) {
-    let name = string.split(' ')[0].charAt(0);
-    let surname = string.split(' ')[1].charAt(0);
-    let placeholder = name + surname;
-    return placeholder
-}
+posts.forEach((element)=>{
+    document.getElementById('container').innerHTML+= onePost(element)
+
+})
+
 
 
 // cambia colore al button + aggiungi o togli like
