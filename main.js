@@ -63,7 +63,7 @@ console.log(postWrapper)
 
 
 posts.forEach((post) => {
-   
+
     postWrapper.innerHTML +=
         `
       <div class="post">
@@ -98,5 +98,22 @@ posts.forEach((post) => {
     
     `
 })
+
+// cambia colore al button + aggiungi o togli like
+const btnLike = document.querySelectorAll('.js-like-button');
+let likeNumber = document.querySelectorAll('.js-likes-counter');
+
+for (let i = 0; i < posts.length; i++) {
+
+    btnLike[i].addEventListener('click', function () {
+        btnLike[i].classList.toggle('like-button--liked')
+        if (btnLike[i].classList.contains('like-button--liked') == true) {
+            likeNumber[i].innerHTML = posts[i].likes += 1;
+
+        } else {
+            likeNumber[i].innerHTML = posts[i].likes -= 1;
+        }
+    })
+}
 
 
